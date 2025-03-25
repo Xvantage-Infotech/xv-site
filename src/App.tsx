@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Users, Trophy, Code, Figma, Smartphone, Globe, Send, Menu, X, UserCheck, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 import { fadeIn, staggerContainer, scaleIn, } from './animations';
+import emailjs from "emailjs-com";
 
 function App() {
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  // const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -48,6 +49,28 @@ function App() {
     };
   }, []);
   
+
+const sendEmail = (e) => {
+  e.preventDefault();
+
+  emailjs.sendForm(
+    "service_8ry16dd",   // Replace with your EmailJS service ID
+    "template_5y5n3c1",  // Replace with your EmailJS template ID
+    e.target,
+    "uVeDhulb0LxWf3Na3"    // Replace with your EmailJS public key
+  )
+  .then((response) => {
+    console.log("SUCCESS!", response.status, response.text);
+    alert("Message Sent Successfully!");
+  })
+  .catch((error) => {
+    console.log("FAILED...", error);
+    alert("Something went wrong. Try again.");
+  });
+
+  // Clear the form
+  e.target.reset();
+};
 
   const services = [
     { 
@@ -366,25 +389,25 @@ function App() {
     img: "/public/emploe1.png", 
     name: "Vipul Sapra", 
     position: "CEO & Founder", 
-    description: "A visionary leader with a passion for innovation, John drives the company's strategic growth and fosters a culture of excellence." 
+    description: "A visionary leader with a passion for innovation, Vipul drives the company's strategic growth and fosters a culture of excellence." 
   },
   { 
     img: "/public/employ3.png", 
     name: "Rahul Sapra", 
     position: "CTO & Co-Founder", 
-    description: "With a deep technical background, Michael spearheads the technology roadmap, ensuring cutting-edge solutions and scalable architectures." 
+    description: "With a deep technical background,Rahul spearheads the technology roadmap, ensuring cutting-edge solutions and scalable architectures." 
   },
   { 
     img: "/public/emply2.png", 
     name: "Harsh Patel", 
     position: "MERN Developer", 
-    description: "A full-stack expert specializing in the MERN stack, Jane builds high-performance applications with seamless user experiences." 
+    description: "A full-stack expert specializing in the MERN stack, Harsh builds high-performance applications with seamless user experiences." 
   },
   { 
     img: "/public/emplo4.png", 
     name: "Rahul Kavani", 
     position: "UI/UX Designer", 
-    description: "Emily blends creativity with functionality, crafting visually appealing and user-friendly designs that enhance digital experiences." 
+    description: "Rahul blends creativity with functionality, crafting visually appealing and user-friendly designs that enhance digital experiences." 
   }
 ]
 .map((member, index) => (
@@ -482,7 +505,7 @@ function App() {
         Have a project in mind? Let's create something amazing.
       </p>
     </motion.div>
-    <motion.form
+    {/* <motion.form
       variants={scaleIn}
       onSubmit={(e) => {
         e.preventDefault();
@@ -537,7 +560,50 @@ function App() {
       >
         Send Message <Send className="w-5 h-5" />
       </motion.button>
-    </motion.form>
+    </motion.form> */}
+    <motion.form
+  variants={scaleIn}
+  onSubmit={sendEmail} // Attach the new sendEmail function
+  className="max-w-2xl mx-auto"
+>
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
+    <div>
+      <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        required
+        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+      />
+    </div>
+    <div>
+      <input
+        type="email"
+        name="email"
+        placeholder="Your Email"
+        required
+        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+      />
+    </div>
+  </div>
+  <div className="mb-6 sm:mb-8">
+    <textarea
+      name="message"
+      placeholder="Your Message"
+      rows={6}
+      required
+      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+    />
+  </div>
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    type="submit"
+    className="magnetic-button w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold"
+  >
+    Send Message <Send className="w-5 h-5" />
+  </motion.button>
+</motion.form>
   </div>
 </motion.section>
 
