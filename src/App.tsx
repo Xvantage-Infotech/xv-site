@@ -446,7 +446,7 @@ const sendEmail = (e) => {
               { 
                 title: 'React',
                 desc: 'Modern Farm platform with booking features',
-                image: '/public/image (2).png',
+                image: '/public/farm.jpg',
                 category: 'Nandanvan Farm',
                 link: 'https://www.nandanvanfarm.com/'
               },
