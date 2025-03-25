@@ -68,7 +68,6 @@ const sendEmail = (e) => {
     alert("Something went wrong. Try again.");
   });
 
-  // Clear the form
   e.target.reset();
 };
 
