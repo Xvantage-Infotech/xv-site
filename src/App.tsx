@@ -1,17 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowRight, Sparkles, Users, Trophy, Code, Figma, Smartphone, Globe, Send, Menu, X, UserCheck, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 import { fadeIn, staggerContainer, scaleIn, } from './animations';
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const cursorTrailerRef = useRef<HTMLDivElement>(null);
   // const targetRef = useRef<HTMLDivElement>(null);
 
  
 // Replace your existing cursor useEffect with this:
- 
+useEffect(() => {
+  const updateMousePosition = (e: MouseEvent) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    setCursorPosition({ x, y });
+    
+    if (cursorRef.current) {
+      cursorRef.current.style.transform = `translate(${x}px, ${y}px)`;
+    }
+  };
+
+  const handleScroll = () => {
+    if (cursorRef.current) {
+      // Change cursor to down arrow when scrolling
+      cursorRef.current.classList.add('scrolling');
+    }
+  };
+
+  const handleScrollEnd = () => {
+    if (cursorRef.current) {
+      // Revert cursor when scrolling stops
+      cursorRef.current.classList.remove('scrolling');
+    }
+  };
+
+  let scrollTimeout: NodeJS.Timeout;
+  const scrollListener = () => {
+    handleScroll();
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(handleScrollEnd, 100);
+  };
+
+  window.addEventListener("mousemove", updateMousePosition);
+  window.addEventListener("scroll", scrollListener);
+
+  return () => {
+    window.removeEventListener("mousemove", updateMousePosition);
+    window.removeEventListener("scroll", scrollListener);
+    clearTimeout(scrollTimeout);
+  };
+}, []);
 
   const services = [
     { 
@@ -65,66 +107,69 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
+      <div className="hidden md:block">
+        <div className={`custom-cursor ${isHovering ? 'hover' : ''}`} ref={cursorRef} />
+        <div className="cursor-trailer" ref={cursorTrailerRef} />
+      </div>
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-lg border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-bold"
-          >
-            <div className="logo">
-              <img src="public/xvantage_logo_copy.png" alt="Company Logo" />
-            </div>
-          </motion.div>
-
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navItems.map((item, index) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  {item}
-                </motion.a>
-              ))}
-            </div>
-
-            <button
-              className="md:hidden p-2"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-between h-16">
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="text-2xl font-bold cursor-none"
+      >
+        <div className="logo cursor-none">
+          <img src="public/xvantage_logo_copy.png" alt="Company Logo" className="cursor-none" />
         </div>
+      </motion.div>
 
-        <motion.div
-          initial={false}
-          animate={{ height: isMenuOpen ? 'auto' : 0, opacity: isMenuOpen ? 1 : 0 }}
-          className={`md:hidden overflow-hidden ${isMenuOpen ? 'border-t border-white/10' : ''}`}
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex items-center space-x-8">
+        {navItems.map((item, index) => (
+          <motion.a
+            key={item}
+            href={`#${item.toLowerCase()}`}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className="text-gray-300 hover:text-white transition-colors cursor-none"
+          >
+            {item}
+          </motion.a>
+        ))}
+      </div>
+
+      <button
+        className="md:hidden p-2 cursor-none" 
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+    </div>
+  </div>
+
+  <motion.div
+    initial={false}
+    animate={{ height: isMenuOpen ? 'auto' : 0, opacity: isMenuOpen ? 1 : 0 }}
+    className={`md:hidden overflow-hidden ${isMenuOpen ? 'border-t border-white/10' : ''}`}
+  >
+    <div className="px-4 py-4 space-y-4">
+      {navItems.map((item) => (
+        <a
+          key={item}
+          href={`#${item.toLowerCase()}`}
+          className="block text-gray-300 hover:text-white transition-colors cursor-none"
+          onClick={() => setIsMenuOpen(false)}
         >
-          <div className="px-4 py-4 space-y-4">
-            {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="block text-gray-300 hover:text-white transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-        </motion.div>
-      </nav>
+          {item}
+        </a>
+      ))}
+    </div>
+  </motion.div>
+</nav>
 
       {/* Hero Section */}
       <div className="relative min-h-screen pt-16">
@@ -168,7 +213,7 @@ function App() {
             From AI-powered applications to seamless user experiences, we transform ideas into reality.
             </p>
 
-             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+            {/* <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -185,8 +230,28 @@ function App() {
               >
                 Get in Touch
               </motion.button>
-            </div>
+            </div> */}
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="magnetic-button bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold cursor-none"
+    onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
+    onMouseEnter={() => setIsHovering(true)}
+    onMouseLeave={() => setIsHovering(false)}
+  >
+    View Our Work <ArrowRight className="w-5 h-5" />
+  </motion.button>
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="magnetic-button border border-white/20 bg-white/5 backdrop-blur-sm text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold cursor-none"
+    onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+    onMouseEnter={() => setIsHovering(true)}
+    onMouseLeave={() => setIsHovering(false)}
+  >
+    Get in Touch
+  </motion.button>
 </div>
           </motion.div>
         </motion.header>
