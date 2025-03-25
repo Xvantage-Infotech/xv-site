@@ -12,48 +12,42 @@ function App() {
   // const targetRef = useRef<HTMLDivElement>(null);
 
  
-// Replace your existing cursor useEffect with this:
-useEffect(() => {
-  const updateMousePosition = (e: MouseEvent) => {
-    const x = e.clientX;
-    const y = e.clientY;
-    setCursorPosition({ x, y });
-    
-    if (cursorRef.current) {
-      cursorRef.current.style.transform = `translate(${x}px, ${y}px)`;
-    }
-  };
-
-  const handleScroll = () => {
-    if (cursorRef.current) {
-      // Change cursor to down arrow when scrolling
-      cursorRef.current.classList.add('scrolling');
-    }
-  };
-
-  const handleScrollEnd = () => {
-    if (cursorRef.current) {
-      // Revert cursor when scrolling stops
-      cursorRef.current.classList.remove('scrolling');
-    }
-  };
-
-  let scrollTimeout: NodeJS.Timeout;
-  const scrollListener = () => {
-    handleScroll();
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(handleScrollEnd, 100);
-  };
-
-  window.addEventListener("mousemove", updateMousePosition);
-  window.addEventListener("scroll", scrollListener);
-
-  return () => {
-    window.removeEventListener("mousemove", updateMousePosition);
-    window.removeEventListener("scroll", scrollListener);
-    clearTimeout(scrollTimeout);
-  };
-}, []);
+  useEffect(() => {
+    const updateMousePosition = (e: MouseEvent) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      }
+    };
+  
+    const handleScroll = () => {
+      if (cursorRef.current) {
+        cursorRef.current.classList.add("scrolling");
+      }
+    };
+  
+    const handleScrollEnd = () => {
+      if (cursorRef.current) {
+        cursorRef.current.classList.remove("scrolling");
+      }
+    };
+  
+    let scrollTimeout: NodeJS.Timeout;
+    const scrollListener = () => {
+      handleScroll();
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(handleScrollEnd, 100);
+    };
+  
+    window.addEventListener("mousemove", updateMousePosition);
+    window.addEventListener("scroll", scrollListener);
+  
+    return () => {
+      window.removeEventListener("mousemove", updateMousePosition);
+      window.removeEventListener("scroll", scrollListener);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+  
 
   const services = [
     { 
@@ -119,10 +113,10 @@ useEffect(() => {
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        className="text-2xl font-bold cursor-none"
+        className="text-2xl font-bold "
       >
-        <div className="logo cursor-none">
-          <img src="public/xvantage_logo_copy.png" alt="Company Logo" className="cursor-none" />
+        <div className="logo ">
+          <img src="public/xvantage_logo_copy.png" alt="Company Logo"  />
         </div>
       </motion.div>
 
@@ -135,7 +129,7 @@ useEffect(() => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="text-gray-300 hover:text-white transition-colors cursor-none"
+            className="text-gray-300 hover:text-white transition-colors "
           >
             {item}
           </motion.a>
@@ -143,7 +137,7 @@ useEffect(() => {
       </div>
 
       <button
-        className="md:hidden p-2 cursor-none" 
+        className="md:hidden p-2 " 
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -161,7 +155,7 @@ useEffect(() => {
         <a
           key={item}
           href={`#${item.toLowerCase()}`}
-          className="block text-gray-300 hover:text-white transition-colors cursor-none"
+          className="block text-gray-300 hover:text-white transition-colors "
           onClick={() => setIsMenuOpen(false)}
         >
           {item}
@@ -235,7 +229,7 @@ useEffect(() => {
   <motion.button
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
-    className="magnetic-button bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold cursor-none"
+    className="magnetic-button bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold "
     onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
     onMouseEnter={() => setIsHovering(true)}
     onMouseLeave={() => setIsHovering(false)}
@@ -245,7 +239,7 @@ useEffect(() => {
   <motion.button
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
-    className="magnetic-button border border-white/20 bg-white/5 backdrop-blur-sm text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold cursor-none"
+    className="magnetic-button border border-white/20 bg-white/5 backdrop-blur-sm text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold "
     onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
     onMouseEnter={() => setIsHovering(true)}
     onMouseLeave={() => setIsHovering(false)}
@@ -450,7 +444,7 @@ useEffect(() => {
             href={project.link} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group block cursor-none"
+            className="group block "
           >
                 <div className="relative overflow-hidden rounded-2xl mb-6">
                   <img 
@@ -537,7 +531,7 @@ useEffect(() => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         type="submit"
-        className="magnetic-button w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold cursor-none"
+        className="magnetic-button w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
