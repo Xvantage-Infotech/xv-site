@@ -1,19 +1,40 @@
 import React, { useState } from "react";
+import emailjs from "emailjs-com";
 import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from '../animations';
-
+import { Send} from 'lucide-react';
+import {  scaleIn } from '../animations';
 import {
   socialIcon,
-  teamMember,
 } from "../constants/data";
 
-function About() {
+function Contact() {
   const [isHovering, setIsHovering] = useState(false);
 
- 
+  const sendEmail = (e: any) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_8ry16dd", // Replace with your EmailJS service ID
+        "template_5y5n3c1", // Replace with your EmailJS template ID
+        e.target,
+        "uVeDhulb0LxWf3Na3" // Replace with your EmailJS public key
+      )
+      .then((response) => {
+        console.log("SUCCESS!", response.status, response.text);
+        alert("Message Sent Successfully!");
+      })
+      .catch((error) => {
+        console.log("FAILED...", error);
+        alert("Something went wrong. Try again.");
+      });
+
+    e.target.reset();
+  };
 
   return (
-    <div id="about" className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
+    <div id="contact" className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
       {/* Hero Section with Gradient Background */}
       <div className="relative min-h-screen pt-16">
         <motion.div className="absolute inset-0 z-0">
@@ -43,7 +64,7 @@ function About() {
               className="flex items-center gap-2 mb-8"
             >
               <h1 className="text-4xl sm:text-6xl lg:text-6xl font-bold mb-8 leading-tight">
-                About
+                Contact Us
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
                   Xvantage Infotech
@@ -96,39 +117,119 @@ function About() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
-        className="py-20 sm:py-32 bg-black-900 text-white relative z-10"
+        className="py-20 sm:py-32 relative z-10 bg-white/5"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h2
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
             variants={fadeIn("up", "tween", 0.2, 1)}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12"
+            className="text-center mb-12 sm:mb-16"
           >
-            Our Team
-          </motion.h2>
-          <div className="flex justify-center my-4">
-            <div className="w-16 h-1 bg-purple-500"></div>
-          </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+              Let's Work Together
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-400">
+              Have a project in mind? Let's create something amazing.
+            </p>
+          </motion.div>
+          {/* <motion.form
+      variants={scaleIn}
+      onSubmit={(e) => {
+        e.preventDefault();
+        const message = e.target.elements.message.value;
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-10">
-            {teamMember.map((member, index) => (
-              <motion.div
-                key={index}
-                variants={fadeIn("up", "tween", 0.2 + index * 0.1, 1)}
-                className="bg-white/10 p-6 rounded-2xl text-center backdrop-blur-sm"
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
-              >
-                <img
-                  src={member.img}
-                  alt={member.name}
-                  className="w-32 h-32 mx-auto rounded-full mb-4"
+        const subject = encodeURIComponent("New Contact Inquiry");
+        const body = encodeURIComponent(`${message}`);
+
+        window.location.href = `mailto:hr@xvantageinfotech.com?subject=${subject}&body=${body}`;
+
+        // Clear the form
+        e.target.reset();
+      }}
+      className="max-w-2xl mx-auto"
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
+        <div>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            required
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+          />
+        </div>
+        <div>
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            required
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+          />
+        </div>
+      </div>
+      <div className="mb-6 sm:mb-8">
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          rows={6}
+          required
+          className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+        />
+      </div>
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        type="submit"
+        className="magnetic-button w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold"
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+      >
+        Send Message <Send className="w-5 h-5" />
+      </motion.button>
+    </motion.form> */}
+          <motion.form
+            variants={scaleIn}
+            onSubmit={sendEmail} // Attach the new sendEmail function
+            className="max-w-2xl mx-auto"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
                 />
-                <h3 className="text-xl font-bold">{member.name}</h3>
-                <p className="text-purple-400">{member.position}</p>
-                <p className="text-gray-400 mt-2">{member.description}</p>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  required
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+                />
+              </div>
+            </div>
+            <div className="mb-6 sm:mb-8">
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                rows={6}
+                required
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+              />
+            </div>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              type="submit"
+              className="magnetic-button w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold"
+            >
+              Send Message <Send className="w-5 h-5" />
+            </motion.button>
+          </motion.form>
         </div>
       </motion.section>
         {/* Footer Section */}
@@ -247,4 +348,4 @@ function About() {
   );
 }
 
-export default About;
+export default Contact;

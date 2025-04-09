@@ -5,6 +5,12 @@ import { Menu, X } from "lucide-react";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import { navItems } from "./constants/data";
+import ScrollToHash from './ScrollToHash';
+import Contact from "./pages/Contact";
+import Process from "./pages/Process";
+import Work from "./pages/Work";
+import Services from "./pages/Service";
+
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,6 +19,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToHash/>
       <div className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
         <div className="hidden md:block">
           <div className="custom-cursor" ref={cursorRef} />
@@ -44,7 +51,7 @@ function App() {
                 {navItems.filter(item => item !== 'Home' && item !== 'About').map((item, index) => (
                   <a
                     key={item}
-                    href={`/#${item.toLowerCase()}`}
+                    href={`/${item.toLowerCase()}`}
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     {item}
@@ -94,7 +101,7 @@ function App() {
               {navItems.filter(item => item !== 'Home' && item !== 'About').map((item) => (
                 <a
                   key={item}
-                  href={`/#${item.toLowerCase()}`}
+                  href={`/${item.toLowerCase()}`}
                   className="block text-gray-300 hover:text-white transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -109,6 +116,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/process" element={<Process />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/services" element={<Services />} />
         </Routes>
       </div>
     </Router>

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 import {
   completeProject,
@@ -21,6 +23,8 @@ function Home() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorTrailerRef = useRef<HTMLDivElement>(null);
   // const targetRef = useRef<HTMLDivElement>(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
@@ -109,7 +113,7 @@ function Home() {
               {navItems.map((item, index) => (
                 <motion.a
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href={`${item.toLowerCase()}`}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -204,34 +208,13 @@ function Home() {
               experiences, we transform ideas into reality.
             </p>
 
-            {/* <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="magnetic-button bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold"
-                onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                View Our Work <ArrowRight className="w-5 h-5" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="magnetic-button border border-white/20 bg-white/5 backdrop-blur-sm text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold"
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                Get in Touch
-              </motion.button>
-            </div> */}
+        
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="magnetic-button bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold "
-                onClick={() =>
-                  document
-                    .getElementById("work")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={() => navigate("/work")}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
               >
@@ -241,11 +224,7 @@ function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="magnetic-button border border-white/20 bg-white/5 backdrop-blur-sm text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold "
-                onClick={() =>
-                  document
-                    .getElementById("contact")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={() => navigate("/contact")}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
               >
@@ -258,7 +237,6 @@ function Home() {
 
       {/* Services Section */}
       <motion.section
-        id="services"
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
@@ -292,7 +270,6 @@ function Home() {
 
       {/* Process Section */}
       <motion.section
-        id="process"
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
@@ -393,7 +370,6 @@ function Home() {
 
       {/* Featured Work */}
       <motion.section
-        id="work"
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
@@ -446,7 +422,6 @@ function Home() {
 
       {/* Contact Section */}
       <motion.section
-        id="contact"
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
@@ -465,62 +440,7 @@ function Home() {
               Have a project in mind? Let's create something amazing.
             </p>
           </motion.div>
-          {/* <motion.form
-      variants={scaleIn}
-      onSubmit={(e) => {
-        e.preventDefault();
-        const message = e.target.elements.message.value;
 
-        const subject = encodeURIComponent("New Contact Inquiry");
-        const body = encodeURIComponent(`${message}`);
-
-        window.location.href = `mailto:hr@xvantageinfotech.com?subject=${subject}&body=${body}`;
-
-        // Clear the form
-        e.target.reset();
-      }}
-      className="max-w-2xl mx-auto"
-    >
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
-        <div>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            required
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            required
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
-          />
-        </div>
-      </div>
-      <div className="mb-6 sm:mb-8">
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          rows={6}
-          required
-          className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
-        />
-      </div>
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        type="submit"
-        className="magnetic-button w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold"
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-      >
-        Send Message <Send className="w-5 h-5" />
-      </motion.button>
-    </motion.form> */}
           <motion.form
             variants={scaleIn}
             onSubmit={sendEmail} // Attach the new sendEmail function
