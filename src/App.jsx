@@ -9,13 +9,12 @@ import ScrollToHash from './ScrollToHash';
 import Contact from "./pages/Contact";
 import Process from "./pages/Process";
 import Work from "./pages/Work";
-import Services from "./pages/Service";
-
+import Services from "./pages/Services";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const cursorTrailerRef = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef(null);
+  const cursorTrailerRef = useRef(null);
 
   return (
     <Router>
@@ -49,13 +48,13 @@ function App() {
                   About
                 </Link>
                 {navItems.filter(item => item !== 'Home' && item !== 'About').map((item, index) => (
-                  <a
+                  <Link
                     key={item}
-                    href={`/${item.toLowerCase()}`}
+                    to={`/${item.toLowerCase()}`}
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     {item}
-                  </a>
+                  </Link>
                 ))}
               </div>
 
@@ -99,14 +98,14 @@ function App() {
                 About
               </Link>
               {navItems.filter(item => item !== 'Home' && item !== 'About').map((item) => (
-                <a
+                <Link
                   key={item}
-                  href={`/${item.toLowerCase()}`}
+                  to={`/${item.toLowerCase()}`}
                   className="block text-gray-300 hover:text-white transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item}
-                </a>
+                </Link>
               ))}
             </div>
           </motion.div>
@@ -126,4 +125,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 

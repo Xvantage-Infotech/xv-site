@@ -1,4 +1,4 @@
-export const fadeIn = (direction: string, type: string, delay: number, duration: number) => ({
+export const fadeIn = (direction, type, delay, duration) => ({
   hidden: {
     x: direction === 'left' ? 100 : direction === 'right' ? -100 : 0,
     y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,
@@ -49,4 +49,4 @@ export const slideIn = {
       ease: [0.43, 0.13, 0.23, 0.96]
     }
   }
-};
+}; 

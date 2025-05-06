@@ -3,7 +3,6 @@ import emailjs from "emailjs-com";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 import {
   completeProject,
   featureWork,
@@ -17,17 +16,15 @@ import { ArrowRight, Sparkles, Send, Menu, X } from 'lucide-react';
 import { fadeIn, staggerContainer, scaleIn } from '../animations';
 
 function Home() {
-  // const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const cursorTrailerRef = useRef<HTMLDivElement>(null);
-  // const targetRef = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef(null);
+  const cursorTrailerRef = useRef(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
+    const updateMousePosition = (e) => {
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       }
@@ -45,7 +42,7 @@ function Home() {
       }
     };
 
-    let scrollTimeout: NodeJS.Timeout;
+    let scrollTimeout;
     const scrollListener = () => {
       handleScroll();
       clearTimeout(scrollTimeout);
@@ -62,109 +59,21 @@ function Home() {
     };
   }, []);
 
-  const sendEmail = (e: any) => {
+  const sendEmail = (e) => {
     e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "service_8ry16dd", // Replace with your EmailJS service ID
-        "template_5y5n3c1", // Replace with your EmailJS template ID
-        e.target,
-        "uVeDhulb0LxWf3Na3" // Replace with your EmailJS public key
-      )
-      .then((response) => {
-        console.log("SUCCESS!", response.status, response.text);
-        alert("Message Sent Successfully!");
-      })
-      .catch((error) => {
-        console.log("FAILED...", error);
-        alert("Something went wrong. Try again.");
+    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID')
+      .then((result) => {
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
       });
-
-    e.target.reset();
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
-      <div className="hidden md:block">
-        <div
-          className={`custom-cursor ${isHovering ? "hover" : ""}`}
-          ref={cursorRef}
-        />
-        <div className="cursor-trailer" ref={cursorTrailerRef} />
-      </div>
-
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-lg border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-2xl font-bold "
-            >
-              <div className="logo ">
-                <img src="/xvantage_logo_copy.png" alt="Company Logo" />
-              </div>
-            </motion.div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navItems.map((item, index) => (
-                <motion.a
-                  key={item}
-                  href={`${item.toLowerCase()}`}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-gray-300 hover:text-white transition-colors "
-                >
-                  {item}
-                </motion.a>
-              ))}
-            </div>
-
-            <button
-              className="md:hidden p-2 "
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        <motion.div
-          initial={false}
-          animate={{
-            height: isMenuOpen ? "auto" : 0,
-            opacity: isMenuOpen ? 1 : 0,
-          }}
-          className={`md:hidden overflow-hidden ${
-            isMenuOpen ? "border-t border-white/10" : ""
-          }`}
-        >
-          <div className="px-4 py-4 space-y-4">
-            {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="block text-gray-300 hover:text-white transition-colors "
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-        </motion.div>
-      </nav>
-
-      {/* Hero Section */}
+    <div id="home" className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
+      {/* Hero Section with Gradient Background */}
       <div className="relative min-h-screen pt-16">
-        <motion.div style={{}} className="absolute inset-0 z-0">
+        <motion.div className="absolute inset-0 z-0">
           <div
             className="absolute inset-0 bg-gradient-radial from-purple-500/20 via-transparent to-transparent mix-blend-screen"
             style={{
@@ -190,52 +99,46 @@ function Home() {
               transition={{ duration: 0.8 }}
               className="flex items-center gap-2 mb-8"
             >
-              <Sparkles className="w-6 h-6 text-purple-500" />
-              {/* <span className="text-purple-500 font-medium">Award-winning design studio</span> */}
+              <h1 className="text-4xl sm:text-6xl lg:text-6xl font-bold mb-8 leading-tight">
+                Empowering Innovation
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                  Digital Magic
+                </span>
+              </h1>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-6xl font-bold mb-8 leading-tight">
-              Empowering Innovation
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
-                Digital Magic
-              </span>
-            </h1>
+            <motion.div
+              variants={fadeIn("up", "tween", 0.3, 1)}
+              className="prose prose-lg prose-invert max-w-none"
+            >
+              <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mb-12">
+                We are a team of passionate developers and designers dedicated to creating exceptional digital experiences.
+              </p>
 
-            <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mb-12">
-              We craft intelligent, future-ready solutions that drive businesses
-              forward. From AI-powered applications to seamless user
-              experiences, we transform ideas into reality.
-            </p>
-
-        
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="magnetic-button bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold "
-                onClick={() => navigate("/work")}
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
+              <motion.div
+                variants={fadeIn("up", "tween", 0.4, 1)}
+                className="flex flex-wrap gap-4"
               >
-                View Our Work <ArrowRight className="w-5 h-5" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="magnetic-button border border-white/20 bg-white/5 backdrop-blur-sm text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold "
-                onClick={() => navigate("/contact")}
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
-              >
-                Get in Touch
-              </motion.button>
-            </div>
+                <button
+                  onClick={() => navigate('/contact')}
+                  className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all flex items-center gap-2"
+                >
+                  Get Started <ArrowRight className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => navigate('/services')}
+                  className="px-6 py-3 border border-white/10 text-white rounded-lg hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-pink-500/20 transition-all flex items-center gap-2"
+                >
+                  Our Services <Sparkles className="w-4 h-4" />
+                </button>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </motion.header>
       </div>
 
-      {/* Services Section */}
+      {/* Services Preview Section */}
       <motion.section
         variants={staggerContainer}
         initial="hidden"
@@ -251,7 +154,7 @@ function Home() {
             Our Services
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {services.map((service, index) => (
+            {services.slice(0, 4).map((service, index) => (
               <motion.div
                 key={index}
                 variants={fadeIn("up", "tween", 0.2 + index * 0.1, 1)}
@@ -268,107 +171,7 @@ function Home() {
         </div>
       </motion.section>
 
-      {/* Process Section */}
-      <motion.section
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
-        className="py-20 sm:py-32 relative z-10 bg-white/5"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2
-            variants={fadeIn("up", "tween", 0.2, 1)}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 sm:mb-16 text-center"
-          >
-            Our Process
-          </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((step, index) => (
-              <motion.div
-                key={index}
-                variants={fadeIn("up", "tween", 0.2 + index * 0.1, 1)}
-                className="relative"
-              >
-                <div className="mb-4">
-                  <span className="text-4xl sm:text-6xl font-bold text-outline">
-                    {step.number}
-                  </span>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-4">
-                  {step.title}
-                </h3>
-                <p className="text-gray-400">{step.description}</p>
-                {index < process.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 right-0 w-full process-line" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Stats Section */}
-      <motion.section
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
-        className="py-20 sm:py-32 relative z-10"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-            {completeProject?.map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={fadeIn("up", "tween", 0.2 + index * 0.1, 1)}
-                className="border border-white/10 bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-2xl"
-              >
-                <div className="text-purple-500 mb-4">{stat.icon}</div>
-                <h3 className="text-3xl sm:text-4xl font-bold mb-2">
-                  {stat.number}
-                </h3>
-                <p className="text-gray-400">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      <section className="py-20 sm:py-32 bg-black-900 text-white relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold">Our Awesome Team</h2>
-          <div className="flex justify-center my-4">
-            <div className="w-16 h-1 bg-purple-500"></div>
-          </div>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Effective collaboration between developers and designers is key to
-            delivering innovative and high-quality products. By aligning
-            technical expertise with creative vision, our team ensures a
-            seamless and impactful user experience.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-10">
-            {teamMember.map((member, index) => (
-              <div
-                key={index}
-                className="bg-white/10 p-6 rounded-2xl text-center backdrop-blur-sm"
-              >
-                <img
-                  src={member.img}
-                  alt={member.name}
-                  className="w-32 h-32 mx-auto rounded-full mb-4"
-                />
-                <h3 className="text-xl font-bold">{member.name}</h3>
-                <p className="text-purple-400">{member.position}</p>
-                <p className="text-gray-400 mt-2">{member.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Work */}
+      {/* Featured Work Preview Section */}
       <motion.section
         variants={staggerContainer}
         initial="hidden"
@@ -378,14 +181,13 @@ function Home() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
-            id="featured-work"
             variants={fadeIn("up", "tween", 0.2, 1)}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 sm:mb-16 text-center"
           >
             Featured Work
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {featureWork.map((project, index) => (
+            {featureWork.slice(0, 2).map((project, index) => (
               <motion.div
                 key={index}
                 variants={fadeIn("up", "tween", 0.3 + index * 0.1, 1)}
@@ -394,7 +196,7 @@ function Home() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block "
+                  className="group block"
                 >
                   <div className="relative overflow-hidden rounded-2xl mb-6">
                     <img
@@ -420,13 +222,13 @@ function Home() {
         </div>
       </motion.section>
 
-      {/* Contact Section */}
+      {/* Contact Form Section */}
       <motion.section
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
-        className="py-20 sm:py-32 relative z-10 bg-white/5"
+        className="py-20 sm:py-32 relative z-10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -440,10 +242,9 @@ function Home() {
               Have a project in mind? Let's create something amazing.
             </p>
           </motion.div>
-
           <motion.form
             variants={scaleIn}
-            onSubmit={sendEmail} // Attach the new sendEmail function
+            onSubmit={sendEmail}
             className="max-w-2xl mx-auto"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
@@ -476,8 +277,7 @@ function Home() {
               />
             </div>
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              variants={fadeIn("up", "tween", 0.4, 1)}
               type="submit"
               className="magnetic-button w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold"
             >
@@ -487,6 +287,7 @@ function Home() {
         </div>
       </motion.section>
 
+      {/* Footer Section */}
       <footer className="border-t border-white/10 py-4 sm:py-8 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-start w-full gap-8 sm:gap-12">
@@ -602,4 +403,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Home; 

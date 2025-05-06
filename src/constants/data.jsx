@@ -2,7 +2,7 @@ import { Code, Figma, Github, Globe, Instagram, Linkedin, Smartphone, Trophy, Us
 
 export const teamMember = [
   {
-    img: "/emploe1.png", // Corrected path
+    img: "/emplo4.png",
     name: "Vipul Sapra",
     position: "CEO & Founder",
     description:
@@ -120,7 +120,7 @@ export const featureWork = [
     category: "Age Calc",
     link: "https://apps.apple.com/us/app/agecalc-date-life-calculator/id6739868943",
   },
-]
+];
 
 export const socialIcon = [
   {
@@ -138,4 +138,4 @@ export const socialIcon = [
     href: "https://www.instagram.com/xvantage_infotech/",
     label: "Instagram",
   },
-]
+]; 
