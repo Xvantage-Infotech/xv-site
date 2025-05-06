@@ -19,4 +19,4 @@ const ScrollToHash = () => {
   return null;
 };
 
-export default ScrollToHash;
+export default ScrollToHash; 

@@ -4,16 +4,14 @@ import { fadeIn, staggerContainer } from '../animations';
 
 import {
   socialIcon,
-  process,
+  teamMember,
 } from "../constants/data";
 
-function Process() {
+function About() {
   const [isHovering, setIsHovering] = useState(false);
 
- 
-
   return (
-    <div id="process" className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
+    <div id="about" className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
       {/* Hero Section with Gradient Background */}
       <div className="relative min-h-screen pt-16">
         <motion.div className="absolute inset-0 z-0">
@@ -43,7 +41,7 @@ function Process() {
               className="flex items-center gap-2 mb-8"
             >
               <h1 className="text-4xl sm:text-6xl lg:text-6xl font-bold mb-8 leading-tight">
-                Process At
+                About
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
                   Xvantage Infotech
@@ -91,44 +89,46 @@ function Process() {
       </div>
 
       {/* Team Section */}
-         <motion.section
-             variants={staggerContainer}
-             initial="hidden"
-             whileInView="show"
-             viewport={{ once: true, amount: 0.25 }}
-             className="py-20 sm:py-32 relative z-10 bg-white/5"
-           >
-             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-               <motion.h2
-                 variants={fadeIn("up", "tween", 0.2, 1)}
-                 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 sm:mb-16 text-center"
-               >
-                 Our Process
-               </motion.h2>
-               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                 {process.map((step, index) => (
-                   <motion.div
-                     key={index}
-                     variants={fadeIn("up", "tween", 0.2 + index * 0.1, 1)}
-                     className="relative"
-                   >
-                     <div className="mb-4">
-                       <span className="text-4xl sm:text-6xl font-bold text-outline">
-                         {step.number}
-                       </span>
-                     </div>
-                     <h3 className="text-xl sm:text-2xl font-bold mb-4">
-                       {step.title}
-                     </h3>
-                     <p className="text-gray-400">{step.description}</p>
-                     {index < process.length - 1 && (
-                       <div className="hidden lg:block absolute top-1/2 right-0 w-full process-line" />
-                     )}
-                   </motion.div>
-                 ))}
-               </div>
-             </div>
-           </motion.section>
+      <motion.section
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+        className="py-20 sm:py-32 bg-black-900 text-white relative z-10"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h2
+            variants={fadeIn("up", "tween", 0.2, 1)}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12"
+          >
+            Our Team
+          </motion.h2>
+          <div className="flex justify-center my-4">
+            <div className="w-16 h-1 bg-purple-500"></div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-10">
+            {teamMember.map((member, index) => (
+              <motion.div
+                key={index}
+                variants={fadeIn("up", "tween", 0.2 + index * 0.1, 1)}
+                className="bg-white/10 p-6 rounded-2xl text-center backdrop-blur-sm"
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+              >
+                <img
+                  src={member.img}
+                  alt={member.name}
+                  className="w-32 h-32 mx-auto rounded-full mb-4"
+                />
+                <h3 className="text-xl font-bold">{member.name}</h3>
+                <p className="text-purple-400">{member.position}</p>
+                <p className="text-gray-400 mt-2">{member.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
         {/* Footer Section */}
         <footer className="border-t border-white/10 py-4 sm:py-8 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -245,4 +245,4 @@ function Process() {
   );
 }
 
-export default Process;
+export default About; 

@@ -10,8 +10,6 @@ import {
 function Services() {
   const [isHovering, setIsHovering] = useState(false);
 
- 
-
   return (
     <div id="services" className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
       {/* Hero Section with Gradient Background */}
@@ -43,7 +41,7 @@ function Services() {
               className="flex items-center gap-2 mb-8"
             >
               <h1 className="text-4xl sm:text-6xl lg:text-6xl font-bold mb-8 leading-tight">
-                Process At
+                Services At
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
                   Xvantage Infotech
@@ -90,40 +88,41 @@ function Services() {
         </motion.header>
       </div>
 
-      {/* Team Section */}
-          <motion.section
-                variants={staggerContainer}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.25 }}
-                className="py-20 sm:py-32 relative z-10"
+      {/* Services Section */}
+      <motion.section
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+        className="py-20 sm:py-32 relative z-10"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h2
+            variants={fadeIn("up", "tween", 0.2, 1)}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 sm:mb-16 text-center"
+          >
+            Our Services
+          </motion.h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                variants={fadeIn("up", "tween", 0.2 + index * 0.1, 1)}
+                className="service-card border border-white/10 bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-2xl"
               >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                  <motion.h2
-                    variants={fadeIn("up", "tween", 0.2, 1)}
-                    className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 sm:mb-16 text-center"
-                  >
-                    Our Services
-                  </motion.h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-                    {services.map((service, index) => (
-                      <motion.div
-                        key={index}
-                        variants={fadeIn("up", "tween", 0.2 + index * 0.1, 1)}
-                        className="service-card border border-white/10 bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-2xl"
-                      >
-                        <div className="text-purple-500 mb-4">{service.icon}</div>
-                        <h3 className="text-xl sm:text-2xl font-bold mb-4">
-                          {service.title}
-                        </h3>
-                        <p className="text-gray-400">{service.description}</p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </motion.section>
-        {/* Footer Section */}
-        <footer className="border-t border-white/10 py-4 sm:py-8 px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="text-purple-500 mb-4">{service.icon}</div>
+                <h3 className="text-xl sm:text-2xl font-bold mb-4">
+                  {service.title}
+                </h3>
+                <p className="text-gray-400">{service.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Footer Section */}
+      <footer className="border-t border-white/10 py-4 sm:py-8 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-start w-full gap-8 sm:gap-12">
             {/* Footer Sections - Left side (3 columns) */}
@@ -238,4 +237,4 @@ function Services() {
   );
 }
 
-export default Services;
+export default Services; 
