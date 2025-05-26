@@ -113,7 +113,7 @@ function Home() {
               className="prose prose-lg prose-invert max-w-none"
             >
               <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mb-12">
-                Weeeee are a team of passionate developers and designers dedicated to creating exceptional digital experiences.
+                We are a team of passionate developers and designers dedicated to creating exceptional digital experiences.
               </p>
 
               <motion.div
