@@ -27,7 +27,7 @@ export const teamMember = [
     name: "Jenish Borad",
     position: "UI/UX Designer",
     description:
-      "Rahul blends creativity with functionality, crafting visually appealing and user-friendly designs that enhance digital experiences.",
+      "Jenish blends creativity with functionality, crafting visually appealing and user-friendly designs that enhance digital experiences.",
   },
 ];
 
