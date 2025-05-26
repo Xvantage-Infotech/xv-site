@@ -24,7 +24,7 @@ export const teamMember = [
   },
   {
     img: "/emplo4.png",
-    name: "Rahul Kavani",
+    name: "Jenish Borad",
     position: "UI/UX Designer",
     description:
       "Rahul blends creativity with functionality, crafting visually appealing and user-friendly designs that enhance digital experiences.",
