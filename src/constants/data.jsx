@@ -23,7 +23,7 @@ export const teamMember = [
       "A full-stack expert specializing in the MERN stack, Harsh builds high-performance applications with seamless user experiences.",
   },
   {
-    img: "/employ3.png",
+    img: "/emply2.png",
     name: "Jenish Borad",
     position: "UI/UX Designer",
     description:
