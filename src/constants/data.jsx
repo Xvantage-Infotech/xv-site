@@ -2,7 +2,7 @@ import { Code, Figma, Github, Globe, Instagram, Linkedin, Smartphone, Trophy, Us
 
 export const teamMember = [
   {
-    img: "/emplo4.png",
+    img: "/employ3.png",
     name: "Vipul Sapra",
     position: "CEO & Founder",
     description:
@@ -23,7 +23,7 @@ export const teamMember = [
       "A full-stack expert specializing in the MERN stack, Harsh builds high-performance applications with seamless user experiences.",
   },
   {
-    img: "/emplo4.png",
+    img: "/employ3.png",
     name: "Jenish Borad",
     position: "UI/UX Designer",
     description:
