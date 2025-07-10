@@ -9,21 +9,21 @@ export const teamMember = [
       "A visionary leader with a passion for innovation, Vipul drives the company's strategic growth and fosters a culture of excellence.",
   },
   {
-    img: "/employ3.png",
+    img: "/rahul sapra.jfif",
     name: "Rahul Sapra",
     position: "CTO & Co-Founder",
     description:
       "With a deep technical background, Rahul spearheads the technology roadmap, ensuring cutting-edge solutions and scalable architectures.",
   },
   {
-    img: "/emply2.png",
+    img: "/harsh.jpeg",
     name: "Harsh Patel",
     position: "MERN Developer",
     description:
       "A full-stack expert specializing in the MERN stack, Harsh builds high-performance applications with seamless user experiences.",
   },
   {
-    img: "/emply2.png",
+    img: "/jenish.jpg",
     name: "Jenish Borad",
     position: "UI/UX Designer",
     description:
