@@ -146,7 +146,7 @@ export const featureWork = [
   title: "Age Calc",
   // desc: "Next-gen Age-Calc for count your perfect Age with Zodiac Sign",
   link: "https://apps.apple.com/us/app/agecalc-date-life-calculator/id6739868943",
-  image: "/Group 63.png",
+  image: "/agecal.jpg",
   // category: "Age Calc",
 },
 
