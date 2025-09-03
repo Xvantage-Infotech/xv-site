@@ -8,8 +8,15 @@ import { navItems } from "./constants/data";
 import ScrollToHash from './ScrollToHash';
 import Contact from "./pages/Contact";
 import Process from "./pages/Process";
-import Work from "./pages/Work";
+// import Work from "./pages/Work";
 import Services from "./pages/Services";
+import Portfoilio from "./pages/portfolio";
+import AgeCalcDetail from "./pages/AgeCalcDetail";
+import CarInfo from "./pages/CarInfo";
+import SpyGame from "./pages/SpyGame";
+import BookMyFarm from "./pages/BookMyfarm";
+import BMFAdminPanel from "./pages/BMFAdminPanel";
+import BKPos from "./pages/BKPos";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -117,8 +124,15 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/process" element={<Process />} />
-          <Route path="/work" element={<Work />} />
+          {/* <Route path="/work" element={<Work />} /> */}
           <Route path="/services" element={<Services />} />
+          <Route path="/portfolio" element={<Portfoilio />} />
+          <Route path="/agecalc" element={<AgeCalcDetail />} />
+          <Route path="/carinfo" element={<CarInfo />} />
+          <Route path="/spygame" element={<SpyGame />} />
+          <Route path="/bookmyfarm" element={<BookMyFarm />} />
+          <Route path="/bmf-adminpanel" element={<BMFAdminPanel />} />
+          <Route path="/bkpos" element={<BKPos />} />
         </Routes>
       </div>
     </Router>
