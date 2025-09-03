@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from '../animations';
 
@@ -12,6 +12,9 @@ import {
 } from "../constants/data";
 
 const CarInfo = () => {
+   useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   const project = {
     title: "Car Info",
     desc: "Next-gen Age-Calc to calculate your exact Age along with Zodiac Sign",

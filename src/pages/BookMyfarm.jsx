@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from '../animations';
 
@@ -13,6 +13,9 @@ import {
 import { Book } from "lucide-react";
 
 const BookMyFarm = () => {
+   useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   const project = {
     title: "Book My Farm",
     desc: "Next-gen Age-Calc to calculate your exact Age along with Zodiac Sign",
