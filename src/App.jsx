@@ -17,6 +17,7 @@ import SpyGame from "./pages/SpyGame";
 import BookMyFarm from "./pages/BookMyfarm";
 import BMFAdminPanel from "./pages/BMFAdminPanel";
 import BKPos from "./pages/BKPos";
+import BKSuperAdmin from "./pages/BKSuperAdmin";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -133,6 +134,7 @@ function App() {
           <Route path="/bookmyfarm" element={<BookMyFarm />} />
           <Route path="/bmf-adminpanel" element={<BMFAdminPanel />} />
           <Route path="/bkpos" element={<BKPos />} />
+          <Route path="/bksuperadmin" element={<BKSuperAdmin />} />
         </Routes>
       </div>
     </Router>

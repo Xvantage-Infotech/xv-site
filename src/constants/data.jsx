@@ -127,6 +127,13 @@ export const featureWork = [
     image: "/carinf.png",
     // category: "Age Calc",
   },
+   {
+    title: "Byting Korner Super Admin",
+    // desc: "Next-gen Age-Calc for count your perfect Age with Zodiac Sign",
+    // link: "https://apps.apple.com/us/app/agecalc-date-life-calculator/id6739868943",
+    image: "/bksuper.png",
+    // category: "Age Calc",
+  },
      {
     title: "Byting Korner",
     // desc: "Next-gen Age-Calc for count your perfect Age with Zodiac Sign",

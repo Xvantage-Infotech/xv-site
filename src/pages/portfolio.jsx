@@ -173,6 +173,25 @@ function Portfolio() {
     </div>
   </Link>
 ):
+project.title === "Byting Korner Super Admin" ? (
+  <Link to="/bksuperadmin">
+    <div className="relative overflow-hidden rounded-2xl mb-6 group">
+      <img
+        src={project.image}
+        alt={project.title}
+        className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    </div>
+
+    <div className="space-y-2">
+      <p className="text-purple-500 font-medium">{project.category}</p>
+      <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">{project.title}</h3>
+      <p className="text-gray-400">{project.desc}</p>
+    </div>
+  </Link>
+):
+
   project.title === "Book My Farm" ? (
   <Link to="/bookmyfarm">
     <div className="relative overflow-hidden rounded-2xl mb-6 group">
