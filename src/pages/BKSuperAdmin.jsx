@@ -85,9 +85,17 @@ const BKSuperAdmin = () => {
                                 <h3 className="text-2xl font-bold mb-4">Goals</h3>
                                 <p className="text-gray-400">
                                 Centralize franchise management (Master + Franchise).
+                                </p>
+                                <p className="text-gray-400">
                                 Deliver real-time sales & revenue insights through data visualization.
+                                </p>
+                                <p className="text-gray-400">
                                 Simplify stock and order management for accuracy and speed.
+                                </p>
+                                <p className="text-gray-400">
                                 Build a secure, role-based user management system.
+                                </p>
+                                <p className="text-gray-400">
                                 Enable instant, two-way communication between admins and franchises.
                                 </p>
                                 
@@ -241,7 +249,7 @@ const BKSuperAdmin = () => {
                       <h3 className="text-xl font-bold mb-2">Address</h3>
                       <ul className="text-gray-400 space-y-1">
                         <li>
-                          350 Royale Arcade, Sarthana Jakatnaka, Surat, Gujarat.
+                          Platinum point, 319, opp. CNG Pump, Sudama Chowk, Mota Varachha, Surat, Gujarat
                         </li>
                         <li>
                           <a

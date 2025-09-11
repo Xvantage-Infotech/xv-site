@@ -238,7 +238,7 @@ const BKPos = () => {
                       <h3 className="text-xl font-bold mb-2">Address</h3>
                       <ul className="text-gray-400 space-y-1">
                         <li>
-                          350 Royale Arcade, Sarthana Jakatnaka, Surat, Gujarat.
+                          Platinum point, 319, opp. CNG Pump, Sudama Chowk, Mota Varachha, Surat, Gujarat
                         </li>
                         <li>
                           <a
