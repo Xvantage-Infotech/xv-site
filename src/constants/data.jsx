@@ -3,7 +3,7 @@ import { Code, Figma, Github, Globe, Instagram, Linkedin, Smartphone, Trophy, Us
 export const teamMember = [
   {
     img: "/vipulsapra (2).jpeg",
-    name: "vipulsapra",
+    name: "Vipul Sapra",
     position: "CEO & Founder",
     description:
       "A visionary leader with a passion for innovation, Vipul drives the company's strategic growth and fosters a culture of excellence.",
@@ -22,13 +22,13 @@ export const teamMember = [
     description:
       "A full-stack expert specializing in the MERN stack, Harsh builds high-performance applications with seamless user experiences.",
   },
-  {
-    img: "/jenish.jpg",
-    name: "Jenish Borad",
-    position: "UI/UX Designer",
-    description:
-      "Jenish blends creativity with functionality, crafting visually appealing and user-friendly designs that enhance digital experiences.",
-  },
+  // {
+  //   img: "/jenish.jpg",
+  //   name: "Jenish Borad",
+  //   position: "UI/UX Designer",
+  //   description:
+  //     "Jenish blends creativity with functionality, crafting visually appealing and user-friendly designs that enhance digital experiences.",
+  // },
 ];
 
 export const completeProject = [
