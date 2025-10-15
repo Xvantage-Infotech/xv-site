@@ -1,396 +1,447 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { fadeIn, staggerContainer } from '../animations';
+import { fadeIn, staggerContainer } from "../animations";
 
-import {
-  socialIcon,
-  featureWork,
-} from "../constants/data";
+import { socialIcon, featureWork } from "../constants/data";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 function Portfolio() {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <div id="portfolio" className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
-      {/* Hero Section with Gradient Background */}
-      <div className="relative min-h-screen pt-16">
-        <motion.div className="absolute inset-0 z-0">
-          <div
-            className="absolute inset-0 bg-gradient-radial from-purple-500/20 via-transparent to-transparent mix-blend-screen"
-            style={{
-              transform: `translate(calc(var(--mouse-x) * 20px), calc(var(--mouse-y) * 20px))`,
-              opacity: 0.5,
-            }}
-          />
-        </motion.div>
+    <>
+      <Helmet>
+        <title>
+          Our Portfolio | Xvantage Infotech - Innovative Web, Mobile & AI Projects
+        </title>
+        <meta
+          name="description"
+          content="Explore Xvantage Infotech’s portfolio showcasing cutting-edge web development, mobile apps, AI/ML solutions, and digital products that empower businesses worldwide."
+        />
+        <meta
+          name="keywords"
+          content="Xvantage Infotech portfolio, web development projects, mobile app portfolio, AI/ML case studies, software development showcase, IT solutions"
+        />
+        <meta property="og:title" content="Our Portfolio - Xvantage Infotech" />
+        <meta
+          property="og:description"
+          content="Discover innovative projects by Xvantage Infotech — from mobile apps to AI-driven platforms. See how we turn ideas into impactful digital solutions."
+        />
+        <meta property="og:image" content="/xvantage_logo_copy.png" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://xvantageinfotech.com/portfolio"
+        />
+      </Helmet>
 
-        <motion.header
+      <div
+        id="portfolio"
+        className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden"
+      >
+        {/* Hero Section with Gradient Background */}
+        <div className="relative min-h-screen pt-16">
+          <motion.div className="absolute inset-0 z-0">
+            <div
+              className="absolute inset-0 bg-gradient-radial from-purple-500/20 via-transparent to-transparent mix-blend-screen"
+              style={{
+                transform: `translate(calc(var(--mouse-x) * 20px), calc(var(--mouse-y) * 20px))`,
+                opacity: 0.5,
+              }}
+            />
+          </motion.div>
+
+          <motion.header
+            variants={staggerContainer}
+            initial="hidden"
+            animate="show"
+            className="relative z-10 min-h-[calc(100vh-4rem)] flex flex-col justify-center px-4 sm:px-6 lg:px-8"
+          >
+            <motion.div
+              variants={fadeIn("up", "tween", 0.2, 1)}
+              className="max-w-7xl mx-auto"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="flex items-center gap-2 mb-8"
+              >
+                <h1 className="text-4xl sm:text-6xl lg:text-6xl font-bold mb-8 leading-tight">
+                  Our Work
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                    Xvantage Infotech
+                  </span>
+                </h1>
+              </motion.div>
+
+              <motion.div
+                variants={fadeIn("up", "tween", 0.3, 1)}
+                className="prose prose-lg prose-invert max-w-none"
+              >
+                <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mb-12">
+                  We are a team of passionate developers and designers dedicated
+                  to creating exceptional digital experiences.
+                </p>
+
+                {/* Mission & Vision Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <motion.div
+                    variants={fadeIn("up", "tween", 0.4, 1)}
+                    className="service-card border border-white/10 bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-2xl"
+                    onMouseEnter={() => setIsHovering(true)}
+                    onMouseLeave={() => setIsHovering(false)}
+                  >
+                    <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
+                    <p className="text-gray-400">
+                      To deliver innovative digital solutions that empower
+                      businesses to thrive in the modern world.
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeIn("up", "tween", 0.5, 1)}
+                    className="service-card border border-white/10 bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-2xl"
+                    onMouseEnter={() => setIsHovering(true)}
+                    onMouseLeave={() => setIsHovering(false)}
+                  >
+                    <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
+                    <p className="text-gray-400">
+                      To become a leading force in digital transformation, known
+                      for our creativity and technical excellence.
+                    </p>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </motion.header>
+        </div>
+
+        {/* Featured Work Section */}
+        <motion.section
           variants={staggerContainer}
           initial="hidden"
-          animate="show"
-          className="relative z-10 min-h-[calc(100vh-4rem)] flex flex-col justify-center px-4 sm:px-6 lg:px-8"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="py-20 sm:py-32 relative z-10"
         >
-          <motion.div
-            variants={fadeIn("up", "tween", 0.2, 1)}
-            className="max-w-7xl mx-auto"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="flex items-center gap-2 mb-8"
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.h2
+              id="featured-work"
+              variants={fadeIn("up", "tween", 0.2, 1)}
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 sm:mb-16 text-center"
             >
-              <h1 className="text-4xl sm:text-6xl lg:text-6xl font-bold mb-8 leading-tight">
-                Our Work
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
-                  Xvantage Infotech
-                </span>
-              </h1>
-            </motion.div>
-
-            <motion.div
-              variants={fadeIn("up", "tween", 0.3, 1)}
-              className="prose prose-lg prose-invert max-w-none"
-            >
-              <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mb-12">
-                We are a team of passionate developers and designers dedicated to creating exceptional digital experiences.
-              </p>
-
-              {/* Mission & Vision Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              Featured Work
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+              {featureWork.map((project, index) => (
                 <motion.div
-                  variants={fadeIn("up", "tween", 0.4, 1)}
-                  className="service-card border border-white/10 bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-2xl"
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
+                  key={index}
+                  variants={fadeIn("up", "tween", 0.3 + index * 0.1, 1)}
                 >
-                  <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-                  <p className="text-gray-400">
-                    To deliver innovative digital solutions that empower businesses to thrive in the modern world.
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  variants={fadeIn("up", "tween", 0.5, 1)}
-                  className="service-card border border-white/10 bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-2xl"
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
-                >
-                  <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-                  <p className="text-gray-400">
-                    To become a leading force in digital transformation, known for our creativity and technical excellence.
-                  </p>
-                </motion.div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </motion.header>
-      </div>
-
-      {/* Featured Work Section */}
-      <motion.section
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
-        className="py-20 sm:py-32 relative z-10"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2
-            id="featured-work"
-            variants={fadeIn("up", "tween", 0.2, 1)}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 sm:mb-16 text-center"
-          >
-            Featured Work
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {featureWork.map((project, index) => (
-              <motion.div
-                key={index}
-                variants={fadeIn("up", "tween", 0.3 + index * 0.1, 1)}
-              >
-                <a
-                //   href={project.link}
-                //   target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block"
-                >
-                      {project.title === "Age Calc" ? (
-                        <Link to="/agecalc">
-                <div className="relative overflow-hidden rounded-2xl mb-6 group">
-                        <img
+                  <a
+                    //   href={project.link}
+                    //   target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block"
+                  >
+                    {project.title === "Age Calc" ? (
+                      <Link to="/agecalc">
+                        <div className="relative overflow-hidden rounded-2xl mb-6 group">
+                          <img
                             src={project.image}
                             alt={project.title}
                             className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
 
-                  <div className="space-y-2">
-                    <p className="text-purple-500 font-medium">
-                      {project.category}
-                    </p>
-                    <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-400">{project.desc}</p>
-                  </div>
-                  </Link>
-                      ): project.title === "Car Info" ? (
-  <Link to="/carinfo">
-    <div className="relative overflow-hidden rounded-2xl mb-6 group">
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    </div>
+                        <div className="space-y-2">
+                          <p className="text-purple-500 font-medium">
+                            {project.category}
+                          </p>
+                          <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                            {project.title}
+                          </h3>
+                          <p className="text-gray-400">{project.desc}</p>
+                        </div>
+                      </Link>
+                    ) : project.title === "Car Info" ? (
+                      <Link to="/carinfo">
+                        <div className="relative overflow-hidden rounded-2xl mb-6 group">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        </div>
 
-    <div className="space-y-2">
-      <p className="text-purple-500 font-medium">{project.category}</p>
-      <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">{project.title}</h3>
-      <p className="text-gray-400">{project.desc}</p>
-    </div>
-  </Link>
-) : project.title === "Spy Game" ? (
-  <Link to="/spygame">
-    <div className="relative overflow-hidden rounded-2xl mb-6 group">
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    </div>
+                        <div className="space-y-2">
+                          <p className="text-purple-500 font-medium">
+                            {project.category}
+                          </p>
+                          <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                            {project.title}
+                          </h3>
+                          <p className="text-gray-400">{project.desc}</p>
+                        </div>
+                      </Link>
+                    ) : project.title === "Spy Game" ? (
+                      <Link to="/spygame">
+                        <div className="relative overflow-hidden rounded-2xl mb-6 group">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        </div>
 
-    <div className="space-y-2">
-      <p className="text-purple-500 font-medium">{project.category}</p>
-      <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">{project.title}</h3>
-      <p className="text-gray-400">{project.desc}</p>
-    </div>
-  </Link>
-):
-project.title === "Byting Korner Super Admin" ? (
-  <Link to="/bksuperadmin">
-    <div className="relative overflow-hidden rounded-2xl mb-6 group">
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    </div>
+                        <div className="space-y-2">
+                          <p className="text-purple-500 font-medium">
+                            {project.category}
+                          </p>
+                          <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                            {project.title}
+                          </h3>
+                          <p className="text-gray-400">{project.desc}</p>
+                        </div>
+                      </Link>
+                    ) : project.title === "Byting Korner Super Admin" ? (
+                      <Link to="/bksuperadmin">
+                        <div className="relative overflow-hidden rounded-2xl mb-6 group">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        </div>
 
-    <div className="space-y-2">
-      <p className="text-purple-500 font-medium">{project.category}</p>
-      <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">{project.title}</h3>
-      <p className="text-gray-400">{project.desc}</p>
-    </div>
-  </Link>
-):
+                        <div className="space-y-2">
+                          <p className="text-purple-500 font-medium">
+                            {project.category}
+                          </p>
+                          <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                            {project.title}
+                          </h3>
+                          <p className="text-gray-400">{project.desc}</p>
+                        </div>
+                      </Link>
+                    ) : project.title === "Book My Farm" ? (
+                      <Link to="/bookmyfarm">
+                        <div className="relative overflow-hidden rounded-2xl mb-6 group">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        </div>
 
-  project.title === "Book My Farm" ? (
-  <Link to="/bookmyfarm">
-    <div className="relative overflow-hidden rounded-2xl mb-6 group">
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    </div>
+                        <div className="space-y-2">
+                          <p className="text-purple-500 font-medium">
+                            {project.category}
+                          </p>
+                          <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                            {project.title}
+                          </h3>
+                          <p className="text-gray-400">{project.desc}</p>
+                        </div>
+                      </Link>
+                    ) : project.title === "Book My Farm Admin Panel" ? (
+                      <Link to="/bmf-adminpanel">
+                        <div className="relative overflow-hidden rounded-2xl mb-6 group">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        </div>
 
-    <div className="space-y-2">
-      <p className="text-purple-500 font-medium">{project.category}</p>
-      <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">{project.title}</h3>
-      <p className="text-gray-400">{project.desc}</p>
-    </div>
-  </Link>
-):
- project.title === "Book My Farm Admin Panel" ? (
-  <Link to="/bmf-adminpanel">
-    <div className="relative overflow-hidden rounded-2xl mb-6 group">
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    </div>
+                        <div className="space-y-2">
+                          <p className="text-purple-500 font-medium">
+                            {project.category}
+                          </p>
+                          <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                            {project.title}
+                          </h3>
+                          <p className="text-gray-400">{project.desc}</p>
+                        </div>
+                      </Link>
+                    ) : project.title === "Byting Korner" ? (
+                      <Link to="/bkpos">
+                        <div className="relative overflow-hidden rounded-2xl mb-6 group">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        </div>
 
-    <div className="space-y-2">
-      <p className="text-purple-500 font-medium">{project.category}</p>
-      <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">{project.title}</h3>
-      <p className="text-gray-400">{project.desc}</p>
-    </div>
-  </Link>
-):
- project.title === "Byting Korner" ? (
-  <Link to="/bkpos">
-    <div className="relative overflow-hidden rounded-2xl mb-6 group">
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    </div>
-
-    <div className="space-y-2">
-      <p className="text-purple-500 font-medium">{project.category}</p>
-      <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">{project.title}</h3>
-      <p className="text-gray-400">{project.desc}</p>
-    </div>
-  </Link>
-):
- (
-                         <a href={project.link} target="_blank" rel="noopener noreferrer">
-    
-                    
-                  <div className="relative overflow-hidden rounded-2xl mb-6">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-purple-500 font-medium">
-                      {project.category}
-                    </p>
-                    <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-400">{project.desc}</p>
-                  </div>
-             
-    </a>
-                      )}
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Footer Section */}
-      <footer className="border-t border-white/10 py-4 sm:py-8 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row justify-between items-start w-full gap-8 sm:gap-12">
-            {/* Footer Sections - Left side (3 columns) */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 w-full">
-              {/* Company Section */}
-              <div>
-                <h3 className="text-xl font-bold mb-2">Company</h3>
-                <ul className="text-gray-400 space-y-1">
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      About Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Services
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Features
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Our Pricing
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Latest News
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Support Section */}
-              <div>
-                <h3 className="text-xl font-bold mb-2">Support</h3>
-                <ul className="text-gray-400 space-y-1">
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      FAQ's
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Privacy Policy
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Terms & Conditions
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Team
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Contact Us
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Address Section */}
-              <div>
-                <h3 className="text-xl font-bold mb-2">Address</h3>
-                <ul className="text-gray-400 space-y-1">
-                  <li>
-                    Platinum point, 319, opp. CNG Pump, Sudama Chowk, Mota Varachha, Surat, Gujarat
-                  </li>
-                  <li>
-                    <a
-                      href="mailto:hr@xvantageinfotech.com"
-                      className="hover:text-white"
-                    >
-                      hr@xvantageinfotech.com
-                    </a>
-                  </li>
-                  <li>
-                    <a href="tel:+919409150636" className="hover:text-white">
-                      +91 9409150636
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Social Icons - Far Right Corner with increased gap */}
-            <div className="flex gap-6 sm:ml-16">
-              {socialIcon?.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  {social.icon}
-                </a>
+                        <div className="space-y-2">
+                          <p className="text-purple-500 font-medium">
+                            {project.category}
+                          </p>
+                          <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                            {project.title}
+                          </h3>
+                          <p className="text-gray-400">{project.desc}</p>
+                        </div>
+                      </Link>
+                    ) : (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <div className="relative overflow-hidden rounded-2xl mb-6">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        </div>
+                        <div className="space-y-2">
+                          <p className="text-purple-500 font-medium">
+                            {project.category}
+                          </p>
+                          <h3 className="text-xl sm:text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                            {project.title}
+                          </h3>
+                          <p className="text-gray-400">{project.desc}</p>
+                        </div>
+                      </a>
+                    )}
+                  </a>
+                </motion.div>
               ))}
             </div>
           </div>
-        </div>
-      </footer>
-    </div>
+        </motion.section>
+
+        {/* Footer Section */}
+        <footer className="border-t border-white/10 py-4 sm:py-8 px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col sm:flex-row justify-between items-start w-full gap-8 sm:gap-12">
+              {/* Footer Sections - Left side (3 columns) */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 w-full">
+                {/* Company Section */}
+                <div>
+                  <h3 className="text-xl font-bold mb-2">Company</h3>
+                  <ul className="text-gray-400 space-y-1">
+                    <li>
+                      <a href="#" className="hover:text-white">
+                        About Us
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="hover:text-white">
+                        Services
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="hover:text-white">
+                        Features
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="hover:text-white">
+                        Our Pricing
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="hover:text-white">
+                        Latest News
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Support Section */}
+                <div>
+                  <h3 className="text-xl font-bold mb-2">Support</h3>
+                  <ul className="text-gray-400 space-y-1">
+                    <li>
+                      <a href="#" className="hover:text-white">
+                        FAQ's
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="hover:text-white">
+                        Privacy Policy
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="hover:text-white">
+                        Terms & Conditions
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="hover:text-white">
+                        Team
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="hover:text-white">
+                        Contact Us
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Address Section */}
+                <div>
+                  <h3 className="text-xl font-bold mb-2">Address</h3>
+                  <ul className="text-gray-400 space-y-1">
+                    <li>
+                      Platinum point, 319, opp. CNG Pump, Sudama Chowk, Mota
+                      Varachha, Surat, Gujarat
+                    </li>
+                    <li>
+                      <a
+                        href="mailto:hr@xvantageinfotech.com"
+                        className="hover:text-white"
+                      >
+                        hr@xvantageinfotech.com
+                      </a>
+                    </li>
+                    <li>
+                      <a href="tel:+919409150636" className="hover:text-white">
+                        +91 9409150636
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Social Icons - Far Right Corner with increased gap */}
+              <div className="flex gap-6 sm:ml-16">
+                {socialIcon?.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </>
   );
 }
 
-export default Portfolio; 
+export default Portfolio;
