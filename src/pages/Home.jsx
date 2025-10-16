@@ -15,6 +15,7 @@ import {
 import { ArrowRight, Sparkles, Send, Menu, X } from "lucide-react";
 import { fadeIn, staggerContainer, scaleIn } from "../animations";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [isHovering, setIsHovering] = useState(false);
@@ -226,7 +227,7 @@ function Home() {
               Featured Work
             </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-              {featureWork.slice(0, 2).map((project, index) => (
+              {/* {featureWork.slice(0, 2).map((project, index) => (
                 <motion.div
                   key={index}
                   variants={fadeIn("up", "tween", 0.3 + index * 0.1, 1)}
@@ -256,7 +257,57 @@ function Home() {
                     </div>
                   </a>
                 </motion.div>
-              ))}
+              ))} */}
+
+              {featureWork.slice(0, 2).map((project, index) => {
+                const renderCardContent = (
+                  <>
+                    <div className="relative overflow-hidden rounded-2xl mb-6">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-purple-500 font-medium">
+                        {project.category}
+                      </p>
+                      <h3 className="text-xl sm:text-2xl font-bold">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-400">{project.desc}</p>
+                    </div>
+                  </>
+                );
+
+                return (
+                  <motion.div
+                    key={index}
+                    variants={fadeIn("up", "tween", 0.3 + index * 0.1, 1)}
+                  >
+                    {project.title === "Book My Farm" ? (
+                      <Link to="/bookmyfarm" className="group block">
+                        {renderCardContent}
+                      </Link>
+                    ) : project.title === "Book My Farm Admin Panel" ? (
+                      <Link to="/bmf-adminpanel" className="group block">
+                        {renderCardContent}
+                      </Link>
+                    ) : (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block"
+                      >
+                        {renderCardContent}
+                      </a>
+                    )}
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </motion.section>
