@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { Toaster, toast } from "react-hot-toast";
 import {
   completeProject,
   featureWork,
@@ -22,6 +22,7 @@ function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cursorRef = useRef(null);
   const cursorTrailerRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -61,18 +62,25 @@ function Home() {
     };
   }, []);
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
-    emailjs
-      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", e.target, "YOUR_USER_ID")
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
+    const form = e.target;
+    setIsLoading(true);
+
+    try {
+      await emailjs.sendForm(
+        "service_ua2f30o",
+        "template_j7re3xr",
+        form,
+        "GrDfTG_0G03LKnHTO"
       );
+      toast.success("Message sent successfully!");
+      form.reset();
+    } catch (error) {
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -367,11 +375,15 @@ function Home() {
                 />
               </div>
               <motion.button
+                disabled={isLoading}
                 variants={fadeIn("up", "tween", 0.4, 1)}
                 type="submit"
-                className="magnetic-button w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold"
+                className={`magnetic-button w-full ${
+                  isLoading ? "opacity-70 cursor-not-allowed" : ""
+                } bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full flex items-center justify-center gap-2 text-base sm:text-lg font-semibold`}
               >
-                Send Message <Send className="w-5 h-5" />
+                {isLoading ? "Sending..." : "Send Message"}{" "}
+                {/* <Send className="w-5 h-5" /> */}
               </motion.button>
             </motion.form>
           </div>
@@ -491,6 +503,7 @@ function Home() {
           </div>
         </footer>
       </div>
+      <Toaster position="bottom-center" />
     </>
   );
 }
