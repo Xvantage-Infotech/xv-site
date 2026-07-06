@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: './', // Change to relative path
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

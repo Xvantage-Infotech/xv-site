@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React, { useRef, useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Toaster } from "react-hot-toast";
 import { HelmetProvider } from "react-helmet-async";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -19,16 +20,41 @@ import BookMyFarm from "./pages/BookMyfarm";
 import BMFAdminPanel from "./pages/BMFAdminPanel";
 import BKPos from "./pages/BKPos";
 import BKSuperAdmin from "./pages/BKSuperAdmin";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
+import FAQ from "./pages/FAQ";
+import Features from "./pages/Features";
+import Pricing from "./pages/Pricing";
+import LatestNews from "./pages/LatestNews";
+import Team from "./pages/Team";
+import Footer from "./components/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cursorRef = useRef(null);
   const cursorTrailerRef = useRef(null);
 
+  useEffect(() => {
+    const moveCursor = (e) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      }
+      if (cursorTrailerRef.current) {
+        cursorTrailerRef.current.style.transform = `translate(${e.clientX - 250}px, ${e.clientY - 250}px)`;
+      }
+    };
+    window.addEventListener("mousemove", moveCursor);
+    return () => window.removeEventListener("mousemove", moveCursor);
+  }, []);
+
   return (
     <HelmetProvider>
       <Router>
         <ScrollToHash />
+        <Toaster position="top-right" />
         <div className="min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
           <div className="hidden md:block">
             <div className="custom-cursor" ref={cursorRef} />
@@ -96,9 +122,8 @@ function App() {
                 height: isMenuOpen ? "auto" : 0,
                 opacity: isMenuOpen ? 1 : 0,
               }}
-              className={`md:hidden overflow-hidden ${
-                isMenuOpen ? "border-t border-white/10" : ""
-              }`}
+              className={`md:hidden overflow-hidden ${isMenuOpen ? "border-t border-white/10" : ""
+                }`}
             >
               <div className="px-4 py-4 space-y-4">
                 <Link
@@ -147,7 +172,16 @@ function App() {
             <Route path="/bmf-adminpanel" element={<BMFAdminPanel />} />
             <Route path="/bkpos" element={<BKPos />} />
             <Route path="/bksuperadmin" element={<BKSuperAdmin />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/news" element={<LatestNews />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
     </HelmetProvider>

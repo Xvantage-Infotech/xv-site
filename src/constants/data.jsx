@@ -22,7 +22,7 @@ export const teamMember = [
   {
     img: "/rahul sapra.jfif",
     name: "Rahul Sapra",
-    position: "CTO & Co-Founder",
+    position: "IOS Devloper & Socia-media Marketing",
     description:
       "With a deep technical background, Rahul spearheads the technology roadmap, ensuring cutting-edge solutions and scalable architectures.",
   },
@@ -36,16 +36,9 @@ export const teamMember = [
   {
     img: "/mj.png",
     name: "Mujammil Pinjara",
-    position: "Software Engineer",
+    position: "CTO & Co-Founder",
     description:
       "A skilled mobile engineer and project lead, Mujammil crafts robust Android apps while managing cross-functional development teams.",
-  },
-  {
-    img: "/harsh.jpeg",
-    name: "Harsh Patel",
-    position: "Web Developer",
-    description:
-      "An experienced developer crafting fast, responsive websites, Harsh focuses on user-friendly design and clean, maintainable code.",
   },
 ];
 
