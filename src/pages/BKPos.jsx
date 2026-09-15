@@ -5,6 +5,7 @@ import { fadeIn, staggerContainer } from "../animations";
 import { socialIcon, services, Android, Ios } from "../constants/data";
 import { Book } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 
 const BKPos = () => {
   useEffect(() => {
@@ -27,6 +28,8 @@ const BKPos = () => {
 
   return (
     <>
+    <SEO title="BKPos" description="A point-of-sale system built by Xvantage Infotech." path="/bkpos" />
+
       <Helmet>
         <title>
           Byting Korner POS | Smart Point of Sale System by Xvantage Infotech

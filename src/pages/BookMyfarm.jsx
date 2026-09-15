@@ -5,6 +5,7 @@ import { fadeIn, staggerContainer } from "../animations";
 import { socialIcon, services, Android, Ios } from "../constants/data";
 import { Book } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 
 const BookMyFarm = () => {
   useEffect(() => {
@@ -27,6 +28,8 @@ const BookMyFarm = () => {
 
   return (
     <>
+    <SEO title="BookMyFarm" description="BookMyFarm — a farm stay and villa booking platform built by Xvantage Infotech." path="/bookmyfarm" />
+
       <Helmet>
         <title>
           BookMyFarm | Farmhouse & Villa Booking App by Xvantage Infotech

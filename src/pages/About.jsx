@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from "../animations";
 import { Helmet } from "react-helmet-async";
 import { teamMember } from "../constants/data";
+import SEO from "../components/SEO";
 
 
 function About() {
@@ -10,6 +11,8 @@ function About() {
 
   return (
     <>
+    <SEO title="About Us" description="Learn about Xvantage Infotech's team, experience, and approach to building software products." path="/about" />
+
       <Helmet>
         <title>
           About Us | Xvantage Infotech - Building the Future with Technology

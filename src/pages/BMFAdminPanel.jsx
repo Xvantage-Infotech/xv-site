@@ -5,6 +5,7 @@ import { fadeIn, staggerContainer } from "../animations";
 import { socialIcon, services, Android, Ios } from "../constants/data";
 import { Book } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 
 const BMFAdminPanel = () => {
   useEffect(() => {
@@ -27,6 +28,8 @@ const BMFAdminPanel = () => {
 
   return (
     <>
+    <SEO title="BookMyFarm Admin Panel" description="Admin panel built by Xvantage Infotech for the BookMyFarm booking platform." path="/bmf-adminpanel" />
+
       <Helmet>
         <title>
           Book My Farm Admin Panel | Dashboard Management by Xvantage Infotech

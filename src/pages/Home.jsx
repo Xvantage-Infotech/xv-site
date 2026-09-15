@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { fadeIn, staggerContainer, scaleIn } from "../animations";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 
 function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -70,6 +71,7 @@ function Home() {
 
   return (
     <>
+    <SEO title="Home" description="Xvantage Infotech — full-stack web, Android, and iOS development for startups and businesses." path="/" />
       <Helmet>
         <title>Xvantage Infotech | Innovative Web, Mobile & AI/ML Development Solutions</title>
         <meta

@@ -4,6 +4,7 @@ import { fadeIn, staggerContainer } from "../animations";
 
 import { socialIcon, services, Android, Ios } from "../constants/data";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 
 const CarInfo = () => {
   useEffect(() => {
@@ -26,6 +27,8 @@ const CarInfo = () => {
 
   return (
     <>
+    <SEO title="Car Info App" description="A vehicle information lookup app built by Xvantage Infotech." path="/carinfo" />
+
       <Helmet>
         <title>
           CarInfo+ | Vehicle & License Information App by Xvantage Infotech

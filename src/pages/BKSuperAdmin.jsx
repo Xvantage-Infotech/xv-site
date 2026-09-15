@@ -5,6 +5,7 @@ import { fadeIn, staggerContainer } from "../animations";
 import { socialIcon, services, Android, Ios } from "../constants/data";
 import { Book } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 
 const BKSuperAdmin = () => {
   useEffect(() => {
@@ -27,6 +28,8 @@ const BKSuperAdmin = () => {
 
   return (
     <>
+    <SEO title="BK Super Admin" description="A super admin dashboard built by Xvantage Infotech." path="/bksuperadmin" />
+
       <Helmet>
         <title>
           Byting Korner Super Admin | Franchise & POS Management Dashboard by Xvantage Infotech

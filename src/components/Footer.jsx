@@ -53,25 +53,24 @@ function Footer() {
             </div>
 
             {/* Address Section */}
-            <div>
-              <h3 className="text-xl font-bold mb-2">Address</h3>
-              <ul className="text-gray-400 space-y-1">
-                <li>
-                  Platinum point, 319, opp. CNG Pump, Sudama Chowk, Mota
-                  Varachha, Surat, Gujarat
-                </li>
-                <li>
-                  <a href="mailto:hr@xvantageinfotech.com" className="hover:text-white">
-                    hr@xvantageinfotech.com
-                  </a>
-                </li>
-                <li>
-                  <a href="tel:+919409150636" className="hover:text-white">
-                    +91 9409150636
-                  </a>
-                </li>
-              </ul>
-            </div>
+           <div>
+  <h3 className="text-xl font-bold mb-2">Address</h3>
+  <ul className="text-gray-400 space-y-1">
+    <li>
+      Shyam Square, 405, Mota varachha, Surat, Gujarat 394101
+    </li>
+    <li>
+      <a href="mailto:hr@xvantageinfotech.com" className="hover:text-white">
+        hr@xvantageinfotech.com
+      </a>
+    </li>
+    <li>
+      <a href="tel:+919409150636" className="hover:text-white">
+        +91 9409150636
+      </a>
+    </li>
+  </ul>
+</div>
           </div>
 
           {/* Social Icons */}

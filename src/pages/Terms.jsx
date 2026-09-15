@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from "../animations";
 import { Helmet } from "react-helmet-async";
 import { FileText, Calendar, Sparkles } from "lucide-react";
+import SEO from "../components/SEO";
 
 function Terms() {
   // Track mouse coordinates for spotlight effect
@@ -23,6 +24,8 @@ function Terms() {
 
   return (
     <>
+    <SEO title="Terms & Conditions" description="Terms and conditions for using Xvantage Infotech's website and services." path="/terms" noindex />
+
       <Helmet>
         <title>Terms & Conditions | Xvantage Infotech</title>
         <meta

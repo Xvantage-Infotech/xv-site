@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from "../animations";
 import { Helmet } from "react-helmet-async";
 import { Calendar, ArrowRight, Sparkles } from "lucide-react";
+import SEO from "../components/SEO";
 
 const news = [
   {
@@ -44,6 +45,8 @@ function LatestNews() {
 
   return (
     <>
+    <SEO title="Latest News" description="News and updates from Xvantage Infotech." path="/news" />
+
       <Helmet>
         <title>Latest News | Xvantage Infotech</title>
         <meta

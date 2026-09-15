@@ -4,6 +4,7 @@ import { fadeIn, staggerContainer } from "../animations";
 
 import { socialIcon, services, Android, Ios } from "../constants/data";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 
 const SpyGame = () => {
   useEffect(() => {
@@ -26,6 +27,8 @@ const SpyGame = () => {
 
   return (
     <>
+    <SEO title="Spy Game" description="An interactive spy-themed game built by Xvantage Infotech." path="/spygame" />
+
       <Helmet>
         <title>
           Spy Game | Multiplayer Social Strategy Game by Xvantage Infotech

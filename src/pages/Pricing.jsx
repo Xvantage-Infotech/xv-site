@@ -4,6 +4,7 @@ import { fadeIn, staggerContainer } from "../animations";
 import { Helmet } from "react-helmet-async";
 import { Check, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 const plans = [
   {
@@ -51,6 +52,8 @@ function Pricing() {
 
   return (
     <>
+    <SEO title="Pricing" description="Pricing plans and packages offered by Xvantage Infotech." path="/pricing" />
+
       <Helmet>
         <title>Our Pricing | Xvantage Infotech</title>
         <meta

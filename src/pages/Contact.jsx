@@ -6,6 +6,7 @@ import { Send, MapPin, Mail, Sparkles, ShieldCheck, CheckCircle2, Github, Linked
 import { scaleIn } from "../animations";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-hot-toast";
+import SEO from "../components/SEO";
 
 function Contact() {
   const [isLoading, setIsLoading] = useState(false);
@@ -49,6 +50,7 @@ function Contact() {
 
   return (
     <>
+    <SEO title="Contact Us" description="Get in touch with Xvantage Infotech to discuss your project." path="/contact" />
       <Helmet>
         <title>Contact Us | Xvantage Infotech - Let’s Build Something Great Together</title>
         <meta

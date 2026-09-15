@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from "../animations";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 
 import { socialIcon, process } from "../constants/data";
 
@@ -10,6 +11,7 @@ function Process() {
 
   return (
     <>
+    <SEO title="Our Process" description="How Xvantage Infotech plans, builds, and ships software products from idea to launch." path="/process" />
       <Helmet>
         <title>Our Process | Xvantage Infotech - From Idea to Innovation</title>
         <meta

@@ -15,6 +15,7 @@ import {
   Smartphone as PhoneIcon,
   Monitor
 } from "lucide-react";
+import SEO from "../components/SEO";
 
 const detailedServices = [
   {
@@ -170,6 +171,8 @@ function Services() {
 
   return (
     <>
+    <SEO title="Services" description="Web, mobile, and full-stack development services offered by Xvantage Infotech." path="/services" />
+
       <Helmet>
         <title>Our Services | Xvantage Infotech - Web, Mobile & AI/ML Solutions</title>
         <meta

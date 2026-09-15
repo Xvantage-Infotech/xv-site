@@ -5,12 +5,15 @@ import { fadeIn, staggerContainer } from "../animations";
 import { socialIcon, featureWork } from "../constants/data";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 
 function Portfolio() {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
     <>
+    <SEO title="Portfolio" description="Explore projects built by Xvantage Infotech across web and mobile platforms." path="/portfolio" />
+
       <Helmet>
         <title>
           Our Portfolio | Xvantage Infotech - Innovative Web, Mobile & AI Projects

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { fadeIn, staggerContainer } from "../animations";
 import { ChevronDown, HelpCircle, Sparkles } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 
 const faqs = [
   {
@@ -48,6 +49,8 @@ function FAQ() {
 
   return (
     <>
+    <SEO title="FAQ" description="Frequently asked questions about Xvantage Infotech's services and process." path="/faq" />
+
       <Helmet>
         <title>FAQ's | Xvantage Infotech</title>
         <meta

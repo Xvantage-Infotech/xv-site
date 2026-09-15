@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from "../animations";
 import { Helmet } from "react-helmet-async";
 import { Zap, ShieldCheck, Layers, Headphones } from "lucide-react";
+import SEO from "../components/SEO";
 
 const features = [
   {
@@ -30,6 +31,8 @@ const features = [
 function Features() {
   return (
     <>
+    <SEO title="Features" description="Key features and capabilities offered across Xvantage Infotech's products." path="/features" />
+
       <Helmet>
         <title>Features | Xvantage Infotech</title>
         <meta

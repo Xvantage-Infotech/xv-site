@@ -4,6 +4,7 @@ import { fadeIn, staggerContainer } from "../animations";
 import { Helmet } from "react-helmet-async";
 import { teamMember } from "../constants/data";
 import { Github, Linkedin, Mail, Sparkles } from "lucide-react";
+import SEO from "../components/SEO";
 
 function Team() {
   // Track mouse coordinates for spotlight effect
@@ -24,6 +25,7 @@ function Team() {
 
   return (
     <>
+    <SEO title="Our Team" description="Meet the team behind Xvantage Infotech." path="/team" />
       <Helmet>
         <title>Our Team | Xvantage Infotech</title>
         <meta

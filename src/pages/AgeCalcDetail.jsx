@@ -4,6 +4,7 @@ import { fadeIn, staggerContainer } from "../animations";
 
 import { socialIcon, services, Android, Ios } from "../constants/data";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 
 const AgeCalcDetail = () => {
   useEffect(() => {
@@ -27,6 +28,8 @@ const AgeCalcDetail = () => {
 
   return (
     <>
+    <SEO title="Age Calculator App" description="A demo age calculator app built by Xvantage Infotech." path="/agecalc" />
+
       <Helmet>
         <title>
           AgeCalc | Smart Age & Date Calculator App by Xvantage Infotech
