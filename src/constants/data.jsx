@@ -180,7 +180,7 @@ export const featureWork = [
 export const socialIcon = [
   {
     icon: <Github className="w-5 h-5 sm:w-6 sm:h-6" />,
-    href: "https://github.com/XvantageInfotech",
+    href: "https://github.com/Xvantage-Infotech",
     label: "GitHub",
   },
   {
